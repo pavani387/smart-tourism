@@ -4,20 +4,36 @@ echo =====================================================================
 echo  TourisMetrics - Automated Vercel Production Deployment
 echo =====================================================================
 echo.
-echo  This script will deploy your full-stack tourism demand analysis and
-echo  smart travel planning platform directly to Vercel.
-echo.
-echo  If this is your first time deploying:
-echo   1. Vercel will prompt you to log in via your web browser.
-echo   2. Press Enter to accept the default project settings.
-echo   3. Vercel will build and output your live production URL!
-echo.
-echo =====================================================================
-echo.
 cd /d "%~dp0"
+
+echo [1/2] Verifying Vercel Authentication...
+call npx.cmd vercel whoami >nul 2>&1
+if %errorlevel% neq 0 (
+    echo.
+    echo -----------------------------------------------------------------
+    echo  No active Vercel login found.
+    echo  Launching Vercel Login...
+    echo  - Use arrow keys to select your login method (e.g. GitHub or Email).
+    echo  - Your browser will open to authenticate.
+    echo -----------------------------------------------------------------
+    echo.
+    call npx.cmd vercel login
+    if %errorlevel% neq 0 (
+        echo.
+        echo [ERROR] Vercel login did not complete. Please try again.
+        pause
+        exit /b %errorlevel%
+    )
+)
+
+echo.
+echo [2/2] Deploying TourisMetrics to Vercel Production...
+echo (Press Enter for any default prompts: Set up and deploy? Yes)
+echo.
 call npx.cmd vercel --prod
+
 echo.
 echo =====================================================================
-echo  Deployment complete! Check the production URL above.
+echo  Deployment finished! Your live website URL is shown above.
 echo =====================================================================
 pause
