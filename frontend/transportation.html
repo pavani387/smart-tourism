@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transportation & Road Analysis | TourisMetrics AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="global-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-primary text-white py-4" style="background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);">
+    <div class="container">
+      <span class="badge bg-warning text-dark mb-1 fw-bold">Multi-Modal Mobility Hub</span>
+      <h2 class="fw-bold mb-1">Transportation & Road Condition Analysis</h2>
+      <p class="text-white-50 mb-0">Compare flights, trains, sleeper buses, private car highway drives, and motorcycle corridors side-by-side.</p>
+    </div>
+  </section>
+
+  <main class="container my-4">
+
+    <!-- Selector Bar -->
+    <div class="p-3 bg-white border rounded-3 shadow-sm mb-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-4">
+          <label class="fs-7 fw-bold text-muted text-uppercase">Target Destination:</label>
+          <select id="transport-dest-select" class="form-select form-select-sm" onchange="loadTransportComparison()">
+            <option value="ooty" selected>Ooty (Tamil Nadu)</option>
+            <option value="manali">Manali (Himachal Pradesh)</option>
+            <option value="goa">Goa (Konkan Coast)</option>
+            <option value="jaipur">Jaipur (Rajasthan)</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="fs-7 fw-bold text-muted text-uppercase">Starting From:</label>
+          <input type="text" class="form-control form-control-sm" value="Bangalore / Delhi / Mumbai" readonly>
+        </div>
+        <div class="col-md-4">
+          <span class="badge bg-success bg-opacity-10 text-success p-2 w-100 fs-7 mt-3">
+            <i class="fa-solid fa-check-circle me-1"></i> Multi-Modal Comparison Active
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transit Hubs Overview -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="p-3 bg-white border rounded-3 shadow-sm d-flex align-items-center gap-3">
+          <div class="metric-icon-box bg-primary bg-opacity-10 text-primary">
+            <i class="fa-solid fa-plane-departure fa-xl"></i>
+          </div>
+          <div>
+            <span class="text-muted fs-7 text-uppercase fw-bold">Nearest Airport</span>
+            <h6 class="fw-bold mb-0 text-dark" id="nearest-airport">Coimbatore (CJB) - 88 km</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 bg-white border rounded-3 shadow-sm d-flex align-items-center gap-3">
+          <div class="metric-icon-box bg-success bg-opacity-10 text-success">
+            <i class="fa-solid fa-train fa-xl"></i>
+          </div>
+          <div>
+            <span class="text-muted fs-7 text-uppercase fw-bold">Nearest Railway Station</span>
+            <h6 class="fw-bold mb-0 text-dark" id="nearest-railway">Mettupalayam (MTP) - 52 km</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparative Transport Cards Grid -->
+    <h5 class="fw-bold mb-3"><i class="fa-solid fa-scale-balanced text-primary me-2"></i>Multi-Modal Fare & Time Comparison</h5>
+    <div class="row g-4 mb-5" id="transport-modes-grid">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Road & Highway Quality Analytics -->
+    <div class="p-4 bg-white border rounded-3 shadow-sm">
+      <h5 class="fw-bold mb-3"><i class="fa-solid fa-road text-primary me-2"></i>Road Conditions & Driving Advisory</h5>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="p-3 bg-light rounded border">
+            <strong class="d-block mb-1"><i class="fa-solid fa-shield-halved text-success me-1"></i> Highway Quality</strong>
+            <span class="text-muted fs-7">Excellent 4-lane national expressway up to the mountain base, transition to well-paved ghat roads.</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-light rounded border">
+            <strong class="d-block mb-1"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Mountain Ghat Curves</strong>
+            <span class="text-muted fs-7">Kalhatty & Kotagiri routes feature 36 hair-pin bends. Experienced mountain driving recommended.</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-light rounded border">
+            <strong class="d-block mb-1"><i class="fa-solid fa-receipt text-info me-1"></i> Toll & Fuel Surcharge</strong>
+            <span class="text-muted fs-7">Expect ~₹250-₹400 in automated FASTag tolls along key expressways. Fuel stations available every 20 km.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="global-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    renderGlobalNav("transport");
+
+    async function loadTransportComparison() {
+      const dest = document.getElementById("transport-dest-select").value;
+      try {
+        const res = await fetch(`${API_BASE}/api/transport/compare?dest_id=${dest}`);
+        const data = await res.json();
+
+        document.getElementById("nearest-airport").textContent = data.nearest_airport;
+        document.getElementById("nearest-railway").textContent = data.nearest_railway;
+
+        const grid = document.getElementById("transport-modes-grid");
+        grid.innerHTML = data.modes.map(m => `
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 bg-white border rounded-3 h-100 shadow-sm d-flex flex-column ${m.fastest ? 'border-primary' : (m.cheapest ? 'border-success' : '')}">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="fw-bold mb-0 text-dark">${m.mode}</h5>
+                ${m.fastest ? '<span class="badge bg-primary">Fastest Option</span>' : ''}
+                ${m.cheapest ? '<span class="badge bg-success">Cheapest Option</span>' : ''}
+              </div>
+              <p class="text-muted fs-7 mb-3 flex-grow-1">${m.desc}</p>
+              <div class="p-3 bg-light rounded border mb-3">
+                <div class="d-flex justify-content-between fs-7 mb-1">
+                  <span class="text-muted">Estimated Duration:</span>
+                  <strong>${m.time_hrs} Hours</strong>
+                </div>
+                <div class="d-flex justify-content-between fs-7">
+                  <span class="text-muted">Average Fare / Cost:</span>
+                  <strong class="text-primary fs-6">₹${m.cost.toLocaleString()}</strong>
+                </div>
+              </div>
+              <a href="trip_planner.html?dest=${dest}&transport=${encodeURIComponent(m.mode)}" class="btn btn-sm btn-outline-primary rounded-pill w-100">
+                Select for Itinerary
+              </a>
+            </div>
+          </div>
+        `).join("");
+
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    loadTransportComparison();
+  </script>
+</body>
+</html>

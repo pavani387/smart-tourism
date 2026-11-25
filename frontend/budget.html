@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget & Expense Planner | TourisMetrics AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="global-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-primary text-white py-4" style="background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);">
+    <div class="container">
+      <span class="badge bg-warning text-dark mb-1 fw-bold">Smart Fiscal Calculator</span>
+      <h2 class="fw-bold mb-1">Budget Allocation & Daily Expense Tracker</h2>
+      <p class="text-white-50 mb-0">Plan itemized travel budgets, split costs across friends and group travelers, and track real-time trip expenditures.</p>
+    </div>
+  </section>
+
+  <main class="container my-4">
+
+    <!-- Row 1: Calculator & Allocation -->
+    <div class="row g-4 mb-4">
+      <div class="col-lg-5">
+        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+          <h5 class="fw-bold mb-3"><i class="fa-solid fa-calculator text-primary me-2"></i>Trip Budget Calculator</h5>
+          
+          <div class="mb-3">
+            <label class="form-label fs-7 fw-bold text-muted text-uppercase">Total Planned Budget (₹ INR):</label>
+            <input type="number" id="calc-total-budget" class="form-control form-control-lg fw-bold text-primary" value="25000" step="1000" oninput="recalculateBudget()">
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label fs-7 fw-bold text-muted text-uppercase">Days Duration:</label>
+              <input type="number" id="calc-days" class="form-control" value="4" min="1" max="30" oninput="recalculateBudget()">
+            </div>
+            <div class="col-6">
+              <label class="form-label fs-7 fw-bold text-muted text-uppercase">Number of People:</label>
+              <input type="number" id="calc-people" class="form-control" value="3" min="1" max="20" oninput="recalculateBudget()">
+            </div>
+          </div>
+
+          <div class="p-3 bg-light rounded border mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="text-muted fs-7">Cost Per Person:</span>
+              <strong class="fs-5 text-dark" id="calc-per-person">₹8,333</strong>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-muted fs-7">Daily Spend Cap / Person:</span>
+              <strong class="fs-6 text-primary" id="calc-daily-cap">₹2,083 / day</strong>
+            </div>
+          </div>
+
+          <a href="trip_planner.html" class="btn btn-outline-primary rounded-pill w-100 py-2 fs-7 fw-bold">
+            <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Apply to Smart Itinerary Generator
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+          <h5 class="fw-bold mb-3"><i class="fa-solid fa-pie-chart text-success me-2"></i>Recommended Budget Breakdown</h5>
+          <p class="text-muted small">Our algorithm allocates funds to guarantee balanced comfort, verified lodging, and emergency safety buffers:</p>
+          
+          <div id="allocation-bars-container">
+            <!-- Dynamic allocation items -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Live Expense Tracker -->
+    <div class="p-4 bg-white border rounded-3 shadow-sm mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <div>
+          <h5 class="fw-bold mb-0"><i class="fa-solid fa-receipt text-primary me-2"></i>Live Trip Expense Tracker</h5>
+          <p class="text-muted small mb-0">Record expenses during your trip to verify budget compliance</p>
+        </div>
+        <button class="btn btn-sm btn-primary rounded-pill px-3" onclick="showAddExpensePrompt()">
+          <i class="fa-solid fa-plus me-1"></i> Add New Expense
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle fs-7 mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Paid Amount</th>
+              <th>Logged By</th>
+            </tr>
+          </thead>
+          <tbody id="expenses-tbody">
+            <tr>
+              <td>Dec 10, 2026</td>
+              <td><span class="badge bg-primary">Transport</span></td>
+              <td>FASTag Highway Toll Charges</td>
+              <td><strong>₹350</strong></td>
+              <td>Alex Johnson</td>
+            </tr>
+            <tr>
+              <td>Dec 10, 2026</td>
+              <td><span class="badge bg-success">Food</span></td>
+              <td>Breakfast at Highway Diner</td>
+              <td><strong>₹620</strong></td>
+              <td>Alex Johnson</td>
+            </tr>
+            <tr>
+              <td>Dec 10, 2026</td>
+              <td><span class="badge bg-warning text-dark">Tickets</span></td>
+              <td>Botanical Garden Entry Tickets</td>
+              <td><strong>₹120</strong></td>
+              <td>Alex Johnson</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="global-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    renderGlobalNav("budget");
+
+    function recalculateBudget() {
+      const total = parseInt(document.getElementById("calc-total-budget").value) || 20000;
+      const days = parseInt(document.getElementById("calc-days").value) || 1;
+      const people = parseInt(document.getElementById("calc-people").value) || 1;
+
+      const perPerson = Math.round(total / people);
+      const dailyCap = Math.round(perPerson / days);
+
+      document.getElementById("calc-per-person").textContent = `₹${perPerson.toLocaleString()}`;
+      document.getElementById("calc-daily-cap").textContent = `₹${dailyCap.toLocaleString()} / day`;
+
+      // Allocations
+      const allocations = [
+        { name: "Accommodation & Stays (35%)", pct: 35, amount: Math.round(total * 0.35), color: "bg-primary" },
+        { name: "Transportation & Fuel (25%)", pct: 25, amount: Math.round(total * 0.25), color: "bg-info" },
+        { name: "Food & Dining (20%)", pct: 20, amount: Math.round(total * 0.20), color: "bg-success" },
+        { name: "Entry Tickets & Activities (10%)", pct: 10, amount: Math.round(total * 0.10), color: "bg-warning" },
+        { name: "Shopping & Emergency Buffer (10%)", pct: 10, amount: Math.round(total * 0.10), color: "bg-secondary" }
+      ];
+
+      const c = document.getElementById("allocation-bars-container");
+      c.innerHTML = allocations.map(a => `
+        <div class="mb-3">
+          <div class="d-flex justify-content-between fs-7 mb-1">
+            <span class="fw-semibold">${a.name}</span>
+            <strong class="text-dark">₹${a.amount.toLocaleString()}</strong>
+          </div>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar ${a.color}" style="width: ${a.pct}%;"></div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function showAddExpensePrompt() {
+      const desc = prompt("Enter expense item description (e.g. Taxi to Doddabetta):");
+      if (!desc) return;
+      const amt = prompt("Enter amount in ₹ (e.g. 450):");
+      if (!amt || isNaN(amt)) return;
+
+      const tbody = document.getElementById("expenses-tbody");
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${new Date().toLocaleDateString()}</td>
+        <td><span class="badge bg-primary">Activity</span></td>
+        <td>${desc}</td>
+        <td><strong>₹${parseInt(amt).toLocaleString()}</strong></td>
+        <td>Alex Johnson</td>
+      `;
+      tbody.prepend(tr);
+      showToast("Expense logged successfully!", "success");
+    }
+
+    recalculateBudget();
+  </script>
+</body>
+</html>

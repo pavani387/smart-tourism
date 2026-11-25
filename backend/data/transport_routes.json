@@ -1,0 +1,136 @@
+{
+  "ooty": {
+    "nearest_airport": "Coimbatore (CJB) - 88 km",
+    "nearest_railway": "Mettupalayam (MTP) - 52 km (Toy Train connector)",
+    "modes": [
+      {
+        "mode": "Flight + Taxi",
+        "time_hrs": 3.5,
+        "cost": 5200,
+        "fastest": true,
+        "desc": "Fly to Coimbatore, scenic cab up Nilgiri ghats."
+      },
+      {
+        "mode": "Train (Nilgiri Express)",
+        "time_hrs": 9.0,
+        "cost": 650,
+        "cheapest": true,
+        "desc": "Overnight train to Mettupalayam + UNESCO Toy Train."
+      },
+      {
+        "mode": "AC Sleeper Bus",
+        "time_hrs": 8.0,
+        "cost": 950,
+        "desc": "Direct overnight luxury bus from Bangalore/Chennai."
+      },
+      {
+        "mode": "Private Car / Self-Drive",
+        "time_hrs": 6.5,
+        "cost": 3400,
+        "desc": "Scenic drive via Bandipur & 36 hairpin bends of Kalhatty."
+      },
+      {
+        "mode": "Motorcycle Ride",
+        "time_hrs": 7.0,
+        "cost": 1200,
+        "desc": "Thrilling mountain biking corridor."
+      }
+    ]
+  },
+  "manali": {
+    "nearest_airport": "Bhuntar (KUU) - 50 km",
+    "nearest_railway": "Chandigarh (CDG) - 310 km",
+    "modes": [
+      {
+        "mode": "Flight (Delhi to Bhuntar)",
+        "time_hrs": 2.5,
+        "cost": 7800,
+        "fastest": true,
+        "desc": "Direct Himalayan flight into Kullu Valley."
+      },
+      {
+        "mode": "Volvo Luxury Bus",
+        "time_hrs": 13.0,
+        "cost": 1400,
+        "cheapest": true,
+        "desc": "Overnight comfortable Volvo via Chandigarh."
+      },
+      {
+        "mode": "Self-Drive Car",
+        "time_hrs": 11.5,
+        "cost": 5800,
+        "desc": "Highway NH3 through Kiratpur-Nerchowk expressway."
+      },
+      {
+        "mode": "Bullet Motorcycle",
+        "time_hrs": 14.0,
+        "cost": 2200,
+        "desc": "Iconic biker pilgrimage route."
+      }
+    ]
+  },
+  "goa": {
+    "nearest_airport": "Goa Dabolim / Mopa (GOX) - 25 km",
+    "nearest_railway": "Madgaon (MAO) / Thivim - 18 km",
+    "modes": [
+      {
+        "mode": "Direct Flight",
+        "time_hrs": 1.5,
+        "cost": 3800,
+        "fastest": true,
+        "desc": "Non-stop flights connecting all metros."
+      },
+      {
+        "mode": "Vande Bharat / Express Train",
+        "time_hrs": 8.0,
+        "cost": 1100,
+        "cheapest": true,
+        "desc": "Scenic Konkan railway with bridge tunnels."
+      },
+      {
+        "mode": "Multi-Axle AC Sleeper Bus",
+        "time_hrs": 12.0,
+        "cost": 1250,
+        "desc": "Direct overnight express buses."
+      },
+      {
+        "mode": "Car Road Trip",
+        "time_hrs": 10.5,
+        "cost": 4500,
+        "desc": "Picturesque Western Ghats coastal drive."
+      }
+    ]
+  },
+  "jaipur": {
+    "nearest_airport": "Jaipur International (JAI) - 12 km",
+    "nearest_railway": "Jaipur Junction (JP) - In city",
+    "modes": [
+      {
+        "mode": "Vande Bharat / Shatabdi Train",
+        "time_hrs": 3.5,
+        "cost": 850,
+        "fastest": true,
+        "desc": "Superfast executive rail from Delhi."
+      },
+      {
+        "mode": "Delhi-Mumbai Expressway Car",
+        "time_hrs": 3.8,
+        "cost": 2100,
+        "desc": "Direct 8-lane expressway drive."
+      },
+      {
+        "mode": "RSRTC Luxury Volvo",
+        "time_hrs": 4.5,
+        "cost": 550,
+        "cheapest": true,
+        "desc": "Buses departing every 30 minutes."
+      },
+      {
+        "mode": "Domestic Flight",
+        "time_hrs": 1.0,
+        "cost": 2900,
+        "desc": "Short connecting flight."
+      }
+    ]
+  }
+}

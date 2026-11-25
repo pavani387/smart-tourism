@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism Demand Analysis & ML Prediction | TourisMetrics AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <div id="global-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-dark text-white py-4" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+          <span class="badge bg-primary mb-1 fw-bold text-uppercase">Enterprise Intelligence</span>
+          <h2 class="fw-bold mb-1">Tourism Demand Analysis & Machine Learning Prediction</h2>
+          <p class="text-white-50 mb-0">Monitor historical tourist flows, seasonal indices, and project future visitor demand using Scikit-Learn.</p>
+        </div>
+        <div>
+          <button class="btn btn-outline-light rounded-pill px-3" onclick="loadTrendsData()">
+            <i class="fa-solid fa-arrows-rotate me-1"></i> Refresh Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container my-4">
+
+    <!-- KPI Metric Cards Row -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3 col-6">
+        <div class="kpi-card h-100 border-start border-4 border-primary">
+          <div class="d-flex justify-content-between text-muted fs-7 text-uppercase fw-bold mb-1">
+            <span>Annual Inflow</span>
+            <i class="fa-solid fa-users text-primary"></i>
+          </div>
+          <h3 class="fw-bold mb-0 text-dark" id="kpi-national-arrivals">--</h3>
+          <span class="text-muted fs-7">Cumulative national tourists</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="kpi-card h-100 border-start border-4 border-success">
+          <div class="d-flex justify-content-between text-muted fs-7 text-uppercase fw-bold mb-1">
+            <span>Top Demanded Destination</span>
+            <i class="fa-solid fa-trophy text-warning"></i>
+          </div>
+          <h3 class="fw-bold mb-0 text-success text-truncate" id="kpi-top-dest">--</h3>
+          <span class="text-muted fs-7">Highest annual arrivals</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="kpi-card h-100 border-start border-4 border-warning">
+          <div class="d-flex justify-content-between text-muted fs-7 text-uppercase fw-bold mb-1">
+            <span>Avg YoY Growth</span>
+            <i class="fa-solid fa-arrow-trend-up text-warning"></i>
+          </div>
+          <h3 class="fw-bold mb-0 text-dark" id="kpi-yoy-growth">--</h3>
+          <span class="text-muted fs-7">Post-pandemic trajectory</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="kpi-card h-100 border-start border-4 border-info">
+          <div class="d-flex justify-content-between text-muted fs-7 text-uppercase fw-bold mb-1">
+            <span>Avg Tourist Spend</span>
+            <i class="fa-solid fa-wallet text-info"></i>
+          </div>
+          <h3 class="fw-bold mb-0 text-dark" id="kpi-avg-spend">--</h3>
+          <span class="text-muted fs-7">Per capita visitor yield</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row 1: Popularity & Transport Modes -->
+    <div class="row g-4 mb-4">
+      <div class="col-lg-7">
+        <div class="p-4 bg-white rounded-3 border shadow-sm h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0"><i class="fa-solid fa-chart-column text-primary me-2"></i>Most Popular Tourist Destinations</h5>
+            <span class="badge bg-light text-dark border">Annual Volume</span>
+          </div>
+          <div style="height: 300px;">
+            <canvas id="chart-popularity"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="p-4 bg-white rounded-3 border shadow-sm h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0"><i class="fa-solid fa-chart-pie text-success me-2"></i>Transportation Mode Preferences</h5>
+            <span class="badge bg-light text-dark border">Share %</span>
+          </div>
+          <div style="height: 300px;">
+            <canvas id="chart-transport"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive ML Demand Prediction Canvas -->
+    <div class="p-4 bg-white rounded-3 border shadow-sm mb-4">
+      <div class="row g-3 align-items-center border-bottom pb-3 mb-3">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2">
+            <div class="metric-icon-box bg-danger bg-opacity-10 text-danger">
+              <i class="fa-solid fa-brain fa-lg"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-0">ML Visitor Demand Prediction</h5>
+              <p class="text-muted small mb-0">Ridge Regression with Multi-Harmonic Seasonal Terms</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-5">
+          <label class="fs-7 fw-bold text-muted text-uppercase">Target Destination:</label>
+          <select id="forecast-dest-select" class="form-select form-select-sm" onchange="runMLForecast()">
+            <option value="ooty" selected>Ooty (Hill Station)</option>
+            <option value="manali">Manali (Alpine Adventure)</option>
+            <option value="goa">Goa (Beach Paradise)</option>
+            <option value="jaipur">Jaipur (The Pink City)</option>
+            <option value="varanasi">Varanasi (Spiritual Ghats)</option>
+            <option value="munnar">Munnar (Tea Highlands)</option>
+            <option value="rishikesh">Rishikesh (Rafting)</option>
+            <option value="andaman">Andaman Islands</option>
+          </select>
+        </div>
+        <div class="col-lg-3 col-md-4">
+          <label class="fs-7 fw-bold text-muted text-uppercase d-flex justify-content-between">
+            <span>Forecast Horizon:</span>
+            <span id="horizon-val-label" class="text-primary fw-bold">12 Months</span>
+          </label>
+          <input type="range" id="forecast-horizon-slider" class="form-range" min="3" max="24" step="3" value="12" oninput="runMLForecast()">
+        </div>
+        <div class="col-lg-2 col-md-3 text-end">
+          <button class="btn btn-sm btn-primary w-100 py-2 rounded-3" onclick="runMLForecast()">
+            <i class="fa-solid fa-play me-1"></i> Re-Train Model
+          </button>
+        </div>
+      </div>
+
+      <!-- Forecast Line Chart -->
+      <div style="height: 380px;">
+        <canvas id="chart-forecast"></canvas>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-3 text-muted fs-7">
+        <span><i class="fa-solid fa-circle text-primary me-1"></i> Solid Line: Historical Actuals</span>
+        <span><i class="fa-solid fa-circle text-danger me-1"></i> Dashed Line: ML Point Forecast</span>
+        <span><i class="fa-solid fa-square text-info opacity-50 me-1"></i> Shaded Band: 95% Uncertainty Prediction Interval</span>
+      </div>
+    </div>
+
+    <!-- Model Diagnostics & Forecast Data Table Row -->
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="p-4 bg-white rounded-3 border shadow-sm h-100">
+          <h5 class="fw-bold mb-3"><i class="fa-solid fa-square-root-variable text-primary me-2"></i>Model Diagnostics</h5>
+          <ul class="list-unstyled mb-0 d-flex flex-column gap-2 fs-7">
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span class="text-muted">Algorithm:</span>
+              <strong class="text-dark" id="score-model-name">--</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span class="text-muted">Holdout MAPE (Error %):</span>
+              <strong class="text-success" id="score-mape">--</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span class="text-muted">Root Mean Squared Error (RMSE):</span>
+              <strong class="text-dark" id="score-rmse">--</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span class="text-muted">Mean Absolute Error (MAE):</span>
+              <strong class="text-dark" id="score-mae">--</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span class="text-muted">In-Sample R² Score:</span>
+              <strong class="text-primary" id="score-r2">--</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span class="text-muted">Temperature Correlation:</span>
+              <strong class="text-warning" id="corr-temp">--</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2">
+              <span class="text-muted">Rainfall Correlation:</span>
+              <strong class="text-info" id="corr-rain">--</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="p-4 bg-white rounded-3 border shadow-sm h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0"><i class="fa-solid fa-table me-2 text-primary"></i>Projected Demand Data Table</h5>
+            <button class="btn btn-sm btn-outline-secondary" onclick="exportDemandCSV()">
+              <i class="fa-solid fa-download me-1"></i> Export Data CSV
+            </button>
+          </div>
+          <div class="table-responsive" style="max-height: 280px;">
+            <table class="table table-hover table-striped align-middle fs-7 mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Month</th>
+                  <th>Predicted Visitors</th>
+                  <th>80% Range</th>
+                  <th>95% Range</th>
+                  <th>Confidence</th>
+                </tr>
+              </thead>
+              <tbody id="forecast-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="global-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/demand_charts.js"></script>
+  <script>
+    renderGlobalNav("demand");
+    initDemandDashboard();
+  </script>
+</body>
+</html>

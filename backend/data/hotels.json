@@ -1,0 +1,156 @@
+[
+  {
+    "id": "h1",
+    "name": "Sterling Ooty Fern Hill",
+    "dest_id": "ooty",
+    "rating": 4.6,
+    "price_night": 4200,
+    "distance_km": 2.1,
+    "rooms_available": 8,
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Free Breakfast",
+      "Free WiFi",
+      "Mountain View",
+      "Heating"
+    ]
+  },
+  {
+    "id": "h2",
+    "name": "Savoy - IHCL Ooty Heritage",
+    "dest_id": "ooty",
+    "rating": 4.8,
+    "price_night": 8500,
+    "distance_km": 1.2,
+    "rooms_available": 4,
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Luxury Spa",
+      "Fine Dining",
+      "Fireplace",
+      "Gym"
+    ]
+  },
+  {
+    "id": "h3",
+    "name": "Backpackers Nest Hostel Ooty",
+    "dest_id": "ooty",
+    "rating": 4.3,
+    "price_night": 1200,
+    "distance_km": 1.8,
+    "rooms_available": 15,
+    "image": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Free WiFi",
+      "Campfire",
+      "Shared Kitchen"
+    ]
+  },
+  {
+    "id": "h4",
+    "name": "The Himalayan Manali Resort",
+    "dest_id": "manali",
+    "rating": 4.7,
+    "price_night": 6200,
+    "distance_km": 1.5,
+    "rooms_available": 6,
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Snow View",
+      "Swimming Pool",
+      "Spa",
+      "Restaurant"
+    ]
+  },
+  {
+    "id": "h5",
+    "name": "Snow Valley Resorts Manali",
+    "dest_id": "manali",
+    "rating": 4.5,
+    "price_night": 3400,
+    "distance_km": 2.4,
+    "rooms_available": 11,
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Free Breakfast",
+      "Free WiFi",
+      "Heating"
+    ]
+  },
+  {
+    "id": "h6",
+    "name": "Taj Exotica Resort & Spa Goa",
+    "dest_id": "goa",
+    "rating": 4.9,
+    "price_night": 14500,
+    "distance_km": 0.1,
+    "rooms_available": 3,
+    "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Private Beach",
+      "Infinity Pool",
+      "Spa",
+      "Water Sports"
+    ]
+  },
+  {
+    "id": "h7",
+    "name": "Goa Beachside Cozy Boutique",
+    "dest_id": "goa",
+    "rating": 4.4,
+    "price_night": 2800,
+    "distance_km": 0.3,
+    "rooms_available": 9,
+    "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Beach Access",
+      "Free WiFi",
+      "Bar & Shack"
+    ]
+  },
+  {
+    "id": "h8",
+    "name": "Jai Mahal Palace Jaipur",
+    "dest_id": "jaipur",
+    "rating": 4.9,
+    "price_night": 12000,
+    "distance_km": 2.0,
+    "rooms_available": 5,
+    "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Royal Gardens",
+      "Swimming Pool",
+      "Heritage Decor"
+    ]
+  },
+  {
+    "id": "h9",
+    "name": "Brijrama Palace Heritage Varanasi",
+    "dest_id": "varanasi",
+    "rating": 4.8,
+    "price_night": 11500,
+    "distance_km": 0.1,
+    "rooms_available": 4,
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Ghat Facing",
+      "Private Boat",
+      "Pure Veg Dining"
+    ]
+  },
+  {
+    "id": "h10",
+    "name": "Munnar Tea Country Heritage Villa",
+    "dest_id": "munnar",
+    "rating": 4.6,
+    "price_night": 3800,
+    "distance_km": 3.0,
+    "rooms_available": 7,
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80",
+    "amenities": [
+      "Tea Plantation View",
+      "Organic Food",
+      "Trekking Guide"
+    ]
+  }
+]

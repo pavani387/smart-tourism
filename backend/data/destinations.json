@@ -1,0 +1,458 @@
+[
+  {
+    "id": "ooty",
+    "name": "Ooty (Udhagamandalam)",
+    "category": "Hill Stations",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "lat": 11.4102,
+    "lon": 76.695,
+    "rating": 4.7,
+    "reviews_count": 1420,
+    "entry_fee": 50,
+    "avg_daily_cost": 2800,
+    "best_season": "March - June & Sept - Nov",
+    "climate": "Pleasant & Cool (12\u00b0C - 20\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80",
+    "description": "Known as the Queen of Hill Stations, Ooty offers mist-covered Nilgiri tea hills, colonial charm, and serene lakes.",
+    "attractions": [
+      {
+        "name": "Botanical Garden",
+        "type": "Nature",
+        "fee": 40,
+        "time_hrs": 2,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Ooty Lake & Boathouse",
+        "type": "Leisure",
+        "fee": 30,
+        "time_hrs": 2,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Doddabetta Peak",
+        "type": "Viewpoint",
+        "fee": 10,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Nilgiri Tea Factory & Museum",
+        "type": "Cultural",
+        "fee": 20,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Government Rose Garden",
+        "type": "Nature",
+        "fee": 30,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Wax World Museum",
+        "type": "Museum",
+        "fee": 50,
+        "time_hrs": 1,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "manali",
+    "name": "Manali",
+    "category": "Adventure",
+    "state": "Himachal Pradesh",
+    "country": "India",
+    "lat": 32.2432,
+    "lon": 77.1892,
+    "rating": 4.8,
+    "reviews_count": 2180,
+    "entry_fee": 0,
+    "avg_daily_cost": 3200,
+    "best_season": "October - June",
+    "climate": "Alpine & Snowy (-2\u00b0C - 18\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+    "description": "A high-altitude Himalayan resort town famous for snow sports, Solang Valley adventures, and pine-scented mountain air.",
+    "attractions": [
+      {
+        "name": "Solang Valley Adventure Arena",
+        "type": "Adventure",
+        "fee": 100,
+        "time_hrs": 3.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Hadimba Ancient Temple",
+        "type": "Religious",
+        "fee": 0,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1626788289456-11f8b66e6328?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Atal Tunnel & Rohtang Pass View",
+        "type": "Sightseeing",
+        "fee": 50,
+        "time_hrs": 3,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Museum of Himachal Culture",
+        "type": "Cultural",
+        "fee": 30,
+        "time_hrs": 1,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Old Manali Craft Cafes",
+        "type": "Shopping",
+        "fee": 0,
+        "time_hrs": 2,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "goa",
+    "name": "Goa Beach Paradise",
+    "category": "Beaches",
+    "state": "Goa",
+    "country": "India",
+    "lat": 15.2993,
+    "lon": 74.124,
+    "rating": 4.9,
+    "reviews_count": 3540,
+    "entry_fee": 0,
+    "avg_daily_cost": 3500,
+    "best_season": "November - March",
+    "climate": "Tropical Sun & Breeze (24\u00b0C - 32\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
+    "description": "Famous for pristine golden beaches, Portuguese heritage churches, vibrant beach shacks, and exhilarating water sports.",
+    "attractions": [
+      {
+        "name": "Baga & Calangute Beach",
+        "type": "Beach",
+        "fee": 0,
+        "time_hrs": 3,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Basilica of Bom Jesus",
+        "type": "Religious",
+        "fee": 0,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Aguada Portuguese Fort",
+        "type": "Historical",
+        "fee": 25,
+        "time_hrs": 2,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Dudhsagar Waterfalls Trek",
+        "type": "Nature",
+        "fee": 100,
+        "time_hrs": 4,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Goa State Central Museum",
+        "type": "Museum",
+        "fee": 20,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "jaipur",
+    "name": "Jaipur (The Pink City)",
+    "category": "Historical places",
+    "state": "Rajasthan",
+    "country": "India",
+    "lat": 26.9124,
+    "lon": 75.7873,
+    "rating": 4.8,
+    "reviews_count": 2890,
+    "entry_fee": 100,
+    "avg_daily_cost": 2600,
+    "best_season": "October - March",
+    "climate": "Semi-Arid Warm (15\u00b0C - 30\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80",
+    "description": "Rajasthan capital celebrated for grand hilltop forts, royal palaces, vibrant bazaars, and rich Rajput culinary heritage.",
+    "attractions": [
+      {
+        "name": "Amber Palace & Fort",
+        "type": "Historical",
+        "fee": 100,
+        "time_hrs": 3,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Hawa Mahal (Palace of Winds)",
+        "type": "Historical",
+        "fee": 50,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1609137144820-7a544d6db8f0?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "City Palace Museum",
+        "type": "Museum",
+        "fee": 200,
+        "time_hrs": 2.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Jantar Mantar Observatory",
+        "type": "Historical",
+        "fee": 50,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Johari & Bapu Bazaars",
+        "type": "Shopping",
+        "fee": 0,
+        "time_hrs": 2,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "varanasi",
+    "name": "Varanasi Spiritual Ghats",
+    "category": "Religious places",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "lat": 25.3176,
+    "lon": 82.9739,
+    "rating": 4.9,
+    "reviews_count": 3120,
+    "entry_fee": 0,
+    "avg_daily_cost": 1800,
+    "best_season": "October - March",
+    "climate": "Subtropical (14\u00b0C - 28\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+    "description": "One of the oldest continuously inhabited cities on earth, renowned for sacred Ganga aarti, spiritual ghats, and silk weaving.",
+    "attractions": [
+      {
+        "name": "Dashashwamedh Ghat Evening Aarti",
+        "type": "Religious",
+        "fee": 0,
+        "time_hrs": 2,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Kashi Vishwanath Corridor",
+        "type": "Religious",
+        "fee": 0,
+        "time_hrs": 2,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Sunrise Boat Tour on Ganges",
+        "type": "Leisure",
+        "fee": 300,
+        "time_hrs": 2,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Sarnath Buddhist Archaeological Site",
+        "type": "Historical",
+        "fee": 25,
+        "time_hrs": 2.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Bharat Kala Bhavan Art Museum",
+        "type": "Museum",
+        "fee": 20,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "munnar",
+    "name": "Munnar Tea Highlands",
+    "category": "Nature and wildlife",
+    "state": "Kerala",
+    "country": "India",
+    "lat": 10.0889,
+    "lon": 77.0595,
+    "rating": 4.8,
+    "reviews_count": 1950,
+    "entry_fee": 40,
+    "avg_daily_cost": 2700,
+    "best_season": "September - May",
+    "climate": "Misty & Lush (10\u00b0C - 20\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80",
+    "description": "Rolling emerald tea plantations, rare Nilgiri Tahr wildlife, waterfalls, and peaceful mountain backdrops in the Western Ghats.",
+    "attractions": [
+      {
+        "name": "Eravikulam National Park",
+        "type": "Wildlife",
+        "fee": 120,
+        "time_hrs": 3,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Mattupetty Dam & Eco Lake",
+        "type": "Leisure",
+        "fee": 30,
+        "time_hrs": 2,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "KDHP Tea Processing Museum",
+        "type": "Museum",
+        "fee": 75,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Attukad Cascading Waterfalls",
+        "type": "Nature",
+        "fee": 0,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "rishikesh",
+    "name": "Rishikesh Yoga & Rafting",
+    "category": "Adventure",
+    "state": "Uttarakhand",
+    "country": "India",
+    "lat": 30.0869,
+    "lon": 78.2676,
+    "rating": 4.7,
+    "reviews_count": 2340,
+    "entry_fee": 0,
+    "avg_daily_cost": 2200,
+    "best_season": "September - June",
+    "climate": "Himalayan Foothills (16\u00b0C - 30\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=800&q=80",
+    "description": "The World Capital of Yoga, offering adrenaline-pumping white water rafting, bungee jumping, and peaceful Ganga meditation.",
+    "attractions": [
+      {
+        "name": "Ganga River White Water Rafting",
+        "type": "Adventure",
+        "fee": 800,
+        "time_hrs": 3.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Laxman Jhula & Suspension Bridge",
+        "type": "Sightseeing",
+        "fee": 0,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Beatles Ashram (Chaurasi Kutia)",
+        "type": "Cultural",
+        "fee": 150,
+        "time_hrs": 2,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Triveni Ghat Evening Maha Aarti",
+        "type": "Religious",
+        "fee": 0,
+        "time_hrs": 1.5,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  },
+  {
+    "id": "andaman",
+    "name": "Andaman & Nicobar Islands",
+    "category": "Beaches",
+    "state": "Andaman & Nicobar",
+    "country": "India",
+    "lat": 11.6234,
+    "lon": 92.7265,
+    "rating": 4.9,
+    "reviews_count": 1670,
+    "entry_fee": 50,
+    "avg_daily_cost": 4800,
+    "best_season": "October - May",
+    "climate": "Tropical Marine (23\u00b0C - 31\u00b0C)",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    "description": "Turquoise waters, coral reef snorkeling, pristine white sands of Radhanagar beach, and poignant colonial history.",
+    "attractions": [
+      {
+        "name": "Radhanagar Beach (Havelock)",
+        "type": "Beach",
+        "fee": 0,
+        "time_hrs": 3,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Cellular Jail & Sound-Light Show",
+        "type": "Historical",
+        "fee": 50,
+        "time_hrs": 2.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Elephant Beach Scuba Diving",
+        "type": "Adventure",
+        "fee": 1500,
+        "time_hrs": 3,
+        "indoor": false,
+        "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        "name": "Samudrika Marine Naval Museum",
+        "type": "Museum",
+        "fee": 50,
+        "time_hrs": 1.5,
+        "indoor": true,
+        "image": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=400&q=80"
+      }
+    ]
+  }
+]
