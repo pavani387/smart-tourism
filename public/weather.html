@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast & Climate Advisory | TourisMetrics AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="global-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-info bg-opacity-10 py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+          <span class="badge bg-primary mb-1 fw-bold">Live Climate & Rain Advisory</span>
+          <h2 class="fw-bold mb-1 text-dark">7-Day Destination Weather Forecast</h2>
+          <p class="text-muted mb-0">Check temperatures, precipitation probability, and receive smart indoor activity recommendations during rainy periods.</p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label class="fs-7 fw-bold text-muted text-uppercase mb-0">Destination:</label>
+          <select id="weather-dest-select" class="form-select form-select-sm" style="width: 220px;" onchange="loadWeatherForecast()">
+            <option value="ooty" selected>Ooty (Hill Station)</option>
+            <option value="manali">Manali (Snow / Alpine)</option>
+            <option value="goa">Goa (Coastal Sunny)</option>
+            <option value="jaipur">Jaipur (Pink City)</option>
+            <option value="varanasi">Varanasi (Spiritual)</option>
+            <option value="munnar">Munnar (Tea Hills)</option>
+            <option value="rishikesh">Rishikesh (Foothills)</option>
+            <option value="andaman">Andaman Islands</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container my-4">
+
+    <!-- Today's Current Weather Card -->
+    <div class="p-4 bg-white border rounded-3 shadow-sm mb-4">
+      <div class="row align-items-center g-4">
+        <div class="col-md-5">
+          <div class="d-flex align-items-center gap-3">
+            <div id="weather-icon-box" class="metric-icon-box bg-primary bg-opacity-10 text-primary" style="width: 65px; height: 65px;">
+              <i class="fa-solid fa-cloud-sun fa-2x"></i>
+            </div>
+            <div>
+              <span class="text-muted fs-7 text-uppercase fw-bold d-block">Today's Weather in <span id="current-dest-name">Ooty</span></span>
+              <h1 class="fw-bold text-dark mb-0 display-5" id="current-temp">--°C</h1>
+              <span class="badge bg-success" id="current-condition">Clear & Sunny</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="row g-2 text-center fs-7">
+            <div class="col-4">
+              <div class="p-3 bg-light rounded border">
+                <span class="text-muted d-block"><i class="fa-solid fa-droplet text-info me-1"></i> Humidity</span>
+                <strong class="fs-6 text-dark" id="current-humidity">--%</strong>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-3 bg-light rounded border">
+                <span class="text-muted d-block"><i class="fa-solid fa-wind text-secondary me-1"></i> Wind Speed</span>
+                <strong class="fs-6 text-dark" id="current-wind">-- km/h</strong>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-3 bg-light rounded border">
+                <span class="text-muted d-block"><i class="fa-solid fa-sun text-warning me-1"></i> UV Index</span>
+                <strong class="fs-6 text-dark">Moderate (4)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info mt-3 mb-0 fs-7 d-flex align-items-center gap-2">
+        <i class="fa-solid fa-circle-info fa-lg"></i>
+        <span id="current-advisory">Favorable sightseeing conditions.</span>
+      </div>
+    </div>
+
+    <!-- 7-Day Forecast Grid -->
+    <h5 class="fw-bold mb-3"><i class="fa-solid fa-calendar-week text-primary me-2"></i>Upcoming 7-Day Outlook</h5>
+    <div class="row g-3 mb-4" id="seven-days-row">
+      <!-- Dynamic via JS -->
+    </div>
+
+    <!-- Smart Rainy-Day Recommendations Engine -->
+    <div class="p-4 bg-white border rounded-3 shadow-sm">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <i class="fa-solid fa-lightbulb text-warning fa-xl"></i>
+        <h5 class="fw-bold mb-0">Smart Weather-Adaptive Activity Recommendations</h5>
+      </div>
+      <p class="text-muted small">
+        Our intelligence engine correlates live precipitation chance with tourist attractions. When heavy rainfall is predicted, outdoor lakes and hiking treks are automatically swapped for cultural indoor museums, tea processing factories, and heritage palaces.
+      </p>
+      <div class="row g-3" id="indoor-recommendations-row">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <div id="global-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    renderGlobalNav("weather");
+
+    async function loadWeatherForecast() {
+      const dest = document.getElementById("weather-dest-select").value;
+      try {
+        const res = await fetch(`${API_BASE}/api/weather/${dest}`);
+        const data = await res.json();
+
+        document.getElementById("current-dest-name").textContent = data.destination;
+        document.getElementById("current-temp").textContent = `${data.current_temp}°C`;
+        document.getElementById("current-condition").textContent = data.current_condition;
+        document.getElementById("current-humidity").textContent = `${data.humidity}%`;
+        document.getElementById("current-wind").textContent = `${data.wind_kmh} km/h`;
+        document.getElementById("current-advisory").textContent = data.advisory;
+
+        // 7 days row
+        const row = document.getElementById("seven-days-row");
+        row.innerHTML = data.forecast_7days.map((d, i) => `
+          <div class="col-md-3 col-6 col-lg">
+            <div class="p-3 bg-white border rounded-3 text-center h-100 ${d.indoor_advisory ? 'border-warning' : ''}">
+              <span class="text-muted fs-7 d-block mb-1">${d.day}</span>
+              <span class="badge bg-light text-dark mb-2">${d.date}</span>
+              <div class="my-2 text-primary">
+                <i class="fa-solid ${d.rain_prob_pct >= 40 ? 'fa-cloud-showers-heavy text-info' : 'fa-sun text-warning'} fa-2x"></i>
+              </div>
+              <strong class="d-block fs-6 mb-1">${d.temp_high}° / <span class="text-muted">${d.temp_low}°</span></strong>
+              <div class="fs-7 text-muted mb-2">${d.condition}</div>
+              <span class="badge ${d.rain_prob_pct >= 40 ? 'bg-danger' : 'bg-success bg-opacity-10 text-success'} fs-7">
+                Rain: ${d.rain_prob_pct}%
+              </span>
+            </div>
+          </div>
+        `).join("");
+
+        // Indoor suggestions
+        renderIndoorSuggestions(dest);
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function renderIndoorSuggestions(dest) {
+      try {
+        const res = await fetch(`${API_BASE}/api/destinations/${dest}`);
+        const d = await res.json();
+        const indoorAttractions = (d.attractions || []).filter(a => a.indoor);
+        const container = document.getElementById("indoor-recommendations-row");
+        
+        if (indoorAttractions.length === 0) {
+          container.innerHTML = `<div class="col-12 text-muted">All primary attractions in ${d.name} are scenic outdoor destinations. Carry an umbrella or rain poncho!</div>`;
+          return;
+        }
+
+        container.innerHTML = indoorAttractions.map(a => `
+          <div class="col-md-4">
+            <div class="p-3 bg-light rounded border d-flex gap-3 align-items-center">
+              <img src="${a.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+              <div>
+                <strong class="d-block fs-7">${a.name}</strong>
+                <span class="badge bg-info text-dark fs-7">Indoor Safe</span>
+                <span class="text-muted fs-7 ms-1">~${a.time_hrs}h duration</span>
+              </div>
+            </div>
+          </div>
+        `).join("");
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    loadWeatherForecast();
+  </script>
+</body>
+</html>

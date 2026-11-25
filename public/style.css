@@ -1,0 +1,399 @@
+/* TourisMetrics AI & Smart Travel Planning Platform - Master Stylesheet */
+:root {
+  --primary: #1e40af;
+  --primary-dark: #1e3a8a;
+  --primary-light: #3b82f6;
+  --secondary: #0d9488;
+  --accent: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --dark: #0f172a;
+  --light-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--light-bg);
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar-custom {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  color: var(--primary-dark);
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+}
+
+.nav-link-custom {
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+  color: var(--primary);
+  background-color: #eff6ff;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  color: #fff;
+  padding: 4.5rem 1rem 3.5rem 1rem;
+  border-radius: 0 0 24px 24px;
+}
+
+.hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: #cbd5e1;
+  max-width: 680px;
+  margin: 0 auto 2rem auto;
+}
+
+/* Search Container */
+.search-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 1080px;
+  margin: -2.5rem auto 2.5rem auto;
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.search-field-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Cards */
+.travel-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.travel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.travel-card-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.travel-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.travel-card:hover .travel-card-img {
+  transform: scale(1.05);
+}
+
+.card-badge-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.wishlist-btn:hover, .wishlist-btn.active {
+  color: #ef4444;
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.travel-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Category Filter Chips */
+.category-chip {
+  padding: 0.45rem 1rem;
+  border-radius: 25px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+
+.category-chip:hover, .category-chip.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* KPI Metric Cards */
+.kpi-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.kpi-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Itinerary Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 9px;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.timeline-content {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Floating AI Chat Assistant Widget */
+.floating-assistant-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 1.25rem;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 1040;
+  transition: all 0.25s;
+}
+
+.floating-assistant-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 25px rgba(37, 99, 235, 0.45);
+}
+
+.chat-drawer {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  width: 380px;
+  height: 520px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-color);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chat-drawer.hidden {
+  display: none !important;
+}
+
+.chat-header {
+  background: var(--primary-dark);
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.msg-bubble {
+  max-width: 82%;
+  padding: 0.65rem 0.95rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.msg-ai {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.msg-user {
+  background: var(--primary);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.chat-input-bar {
+  padding: 0.75rem;
+  background: #fff;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  background: #0f172a;
+  color: #94a3b8;
+  padding: 3rem 0 1.5rem 0;
+  font-size: 0.88rem;
+}
+
+footer a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #fff;
+}

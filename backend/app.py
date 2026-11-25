@@ -2,7 +2,7 @@ import os
 import json
 import random
 from datetime import datetime, timedelta
-from fastapi import FastAPI, Query, HTTPException, Body
+from fastapi import FastAPI, Query, HTTPException, Body, APIRouter
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -16,6 +16,8 @@ app = FastAPI(
     description="Enterprise REST API for ML Tourism Demand Forecasting, Itinerary Planning, Weather Advisories, and GIS Navigation.",
     version="2.0.0"
 )
+
+api_router = APIRouter()
 
 # Enable CORS
 app.add_middleware(
@@ -73,11 +75,11 @@ IN_MEMORY_BOOKINGS = []
 IN_MEMORY_WISHLIST = set()
 
 # API Endpoints
-@app.get("/api/health")
+@api_router.get("/health")
 def health_check():
     return {"status": "online", "timestamp": datetime.now().isoformat(), "models_loaded": True}
 
-@app.get("/api/destinations")
+@api_router.get("/destinations")
 def list_destinations(category: Optional[str] = None, search: Optional[str] = None, max_budget: Optional[int] = None):
     dests = get_destinations_raw()
     if category and category != "All":
@@ -89,7 +91,7 @@ def list_destinations(category: Optional[str] = None, search: Optional[str] = No
         dests = [d for d in dests if d["avg_daily_cost"] * 3 <= max_budget]
     return dests
 
-@app.get("/api/destinations/{dest_id}")
+@api_router.get("/destinations/{dest_id}")
 def get_destination(dest_id: str):
     dests = get_destinations_raw()
     for d in dests:
@@ -97,7 +99,7 @@ def get_destination(dest_id: str):
             return d
     raise HTTPException(status_code=404, detail="Destination not found")
 
-@app.get("/api/hotels")
+@api_router.get("/hotels")
 def list_hotels(dest_id: Optional[str] = None, max_price: Optional[int] = None):
     hotels = get_hotels_raw()
     if dest_id and dest_id != "all":
@@ -106,7 +108,7 @@ def list_hotels(dest_id: Optional[str] = None, max_price: Optional[int] = None):
         hotels = [h for h in hotels if h["price_night"] <= max_price]
     return hotels
 
-@app.post("/api/hotels/book")
+@api_router.post("/hotels/book")
 def book_hotel(booking: BookingRequest):
     b_id = f"BK-{random.randint(10000, 99999)}"
     record = {
@@ -124,12 +126,12 @@ def book_hotel(booking: BookingRequest):
     IN_MEMORY_BOOKINGS.append(record)
     return {"success": True, "booking": record}
 
-@app.get("/api/bookings")
+@api_router.get("/bookings")
 def get_bookings():
     return IN_MEMORY_BOOKINGS
 
 # Demand Analysis & ML Endpoints
-@app.get("/api/demand/trends")
+@api_router.get("/demand/trends")
 def get_demand_trends():
     rankings = ml_engine.get_destination_rankings()
     transport = ml_engine.get_transport_preference()
@@ -140,7 +142,7 @@ def get_demand_trends():
         "national_annual_visitors": sum(r["annual_arrivals"] for r in rankings)
     }
 
-@app.get("/api/demand/predict")
+@api_router.get("/demand/predict")
 def predict_demand(destination: str = "ooty", horizon: int = 12):
     res = ml_engine.predict_demand(destination, horizon_months=horizon)
     if not res:
@@ -150,7 +152,7 @@ def predict_demand(destination: str = "ooty", horizon: int = 12):
     return res
 
 # Trip Planner Endpoint
-@app.post("/api/planner/generate")
+@api_router.post("/planner/generate")
 def plan_trip(req: PlanRequest):
     return itinerary_engine.generate_itinerary(
         origin=req.origin,
@@ -165,7 +167,7 @@ def plan_trip(req: PlanRequest):
     )
 
 # Weather Endpoint
-@app.get("/api/weather/{dest_id}")
+@api_router.get("/weather/{dest_id}")
 def get_weather_forecast(dest_id: str):
     dests = {d["id"]: d for d in get_destinations_raw()}
     dest = dests.get(dest_id, list(dests.values())[0])
@@ -208,14 +210,14 @@ def get_weather_forecast(dest_id: str):
     }
 
 # Transport Comparison Endpoint
-@app.get("/api/transport/compare")
+@api_router.get("/transport/compare")
 def compare_transport(dest_id: str = "ooty"):
     routes = get_transport_raw()
     info = routes.get(dest_id, routes.get("ooty"))
     return info
 
 # AI Travel Assistant Chatbot Endpoint
-@app.post("/api/assistant/chat")
+@api_router.post("/assistant/chat")
 def chat_assistant(req: ChatRequest):
     q = req.message.lower()
     
@@ -235,7 +237,7 @@ def chat_assistant(req: ChatRequest):
     return {"reply": reply, "timestamp": datetime.now().strftime("%H:%M")}
 
 # Admin Metrics Endpoint
-@app.get("/api/admin/metrics")
+@api_router.get("/admin/metrics")
 def get_admin_metrics():
     rankings = ml_engine.get_destination_rankings()
     return {
@@ -249,6 +251,10 @@ def get_admin_metrics():
         "ml_model_accuracy_mape": "4.5%",
         "active_server_status": "Operational (99.98% Uptime)"
     }
+
+# Register API Router both with /api prefix (for direct calls & Vercel rewrites) and without prefix
+app.include_router(api_router, prefix="/api")
+app.include_router(api_router)
 
 # Mount Frontend static files
 FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")

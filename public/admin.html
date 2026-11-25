@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard & Destination Management | TourisMetrics AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="global-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-dark text-white py-4" style="background: linear-gradient(135deg, #0f172a 0%, #312e81 100%);">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+          <span class="badge bg-danger mb-1 fw-bold text-uppercase">Authority Control Suite</span>
+          <h2 class="fw-bold mb-1">Tourism Authority Administration Dashboard</h2>
+          <p class="text-white-50 mb-0">Manage destinations, hotels, monitor tourist demand trends, and audit ML prediction model health.</p>
+        </div>
+        <div>
+          <button class="btn btn-outline-light rounded-pill px-3 btn-sm" onclick="exportDemandCSV()">
+            <i class="fa-solid fa-file-arrow-down me-1"></i> Export Annual Demand Report (CSV)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container my-4">
+
+    <!-- Overview Metric Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3 col-6">
+        <div class="kpi-card border-start border-4 border-primary">
+          <span class="text-muted fs-7 text-uppercase fw-bold d-block">Registered Travelers</span>
+          <h3 class="fw-bold mb-0 text-dark" id="adm-users">1,842</h3>
+          <span class="text-success fs-7"><i class="fa-solid fa-arrow-up"></i> +12% this month</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="kpi-card border-start border-4 border-success">
+          <span class="text-muted fs-7 text-uppercase fw-bold d-block">Generated Itineraries</span>
+          <h3 class="fw-bold mb-0 text-success" id="adm-trips">5,290</h3>
+          <span class="text-muted fs-7">Automated by AI Planner</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="kpi-card border-start border-4 border-warning">
+          <span class="text-muted fs-7 text-uppercase fw-bold d-block">Gross Tourism Volume</span>
+          <h3 class="fw-bold mb-0 text-dark">₹1.42 Cr</h3>
+          <span class="text-muted fs-7">Estimated visitor spending</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="kpi-card border-start border-4 border-info">
+          <span class="text-muted fs-7 text-uppercase fw-bold d-block">ML Model Accuracy</span>
+          <h3 class="fw-bold mb-0 text-info">95.5%</h3>
+          <span class="badge bg-success bg-opacity-10 text-success border border-success fs-7">MAPE: 4.5%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Management Panels Row -->
+    <div class="row g-4 mb-4">
+      
+      <!-- Left: Add Destination Form -->
+      <div class="col-lg-5">
+        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+          <h5 class="fw-bold mb-3"><i class="fa-solid fa-map-location-dot text-primary me-2"></i>Add New Destination</h5>
+          <form onsubmit="handleAddNewDest(event)">
+            <div class="mb-2">
+              <label class="form-label fs-7 fw-bold text-muted text-uppercase">Destination Name</label>
+              <input type="text" id="new-dest-name" class="form-control form-control-sm" placeholder="e.g. Coorg (Kodagu)" required>
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label fs-7 fw-bold text-muted text-uppercase">State</label>
+                <input type="text" id="new-dest-state" class="form-control form-control-sm" placeholder="Karnataka" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label fs-7 fw-bold text-muted text-uppercase">Category</label>
+                <select id="new-dest-cat" class="form-select form-select-sm">
+                  <option value="Hill Stations">Hill Stations</option>
+                  <option value="Beaches">Beaches</option>
+                  <option value="Historical places">Historical</option>
+                  <option value="Religious places">Religious</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Nature and wildlife">Nature & Wildlife</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label class="form-label fs-7 fw-bold text-muted text-uppercase">Entry Fee (₹)</label>
+                <input type="number" id="new-dest-fee" class="form-control form-control-sm" value="50">
+              </div>
+              <div class="col-6">
+                <label class="form-label fs-7 fw-bold text-muted text-uppercase">Est. Daily Cost (₹)</label>
+                <input type="number" id="new-dest-cost" class="form-control form-control-sm" value="2600" required>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label fs-7 fw-bold text-muted text-uppercase">Image URL</label>
+              <input type="url" id="new-dest-img" class="form-control form-control-sm" placeholder="https://images.unsplash.com/..." required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fs-7 fw-bold text-muted text-uppercase">Description</label>
+              <textarea id="new-dest-desc" class="form-control form-control-sm" rows="2" placeholder="Brief tourist overview..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-pill w-100 py-2 fs-7 fw-bold">
+              <i class="fa-solid fa-plus me-1"></i> Register Destination
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Active Destinations Management Table -->
+      <div class="col-lg-7">
+        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0"><i class="fa-solid fa-list-check text-success me-2"></i>Curated Destinations Catalog</h5>
+            <span class="badge bg-light text-dark border" id="adm-dest-count">8 Total</span>
+          </div>
+          <div class="table-responsive" style="max-height: 400px;">
+            <table class="table table-hover align-middle fs-7 mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Destination</th>
+                  <th>State</th>
+                  <th>Category</th>
+                  <th>Rating</th>
+                  <th>Daily Cost</th>
+                </tr>
+              </thead>
+              <tbody id="adm-dest-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Machine Learning Model Monitoring & System Health -->
+    <div class="p-4 bg-white border rounded-3 shadow-sm">
+      <h5 class="fw-bold mb-3"><i class="fa-solid fa-server text-primary me-2"></i>Machine Learning Demand Engine Status</h5>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="p-3 bg-light rounded border">
+            <strong class="d-block mb-1 text-dark">Model Architecture</strong>
+            <span class="text-muted fs-7">Ridge Multi-Harmonic Fourier Regressor with Polynomial Trend and Weather Covariates.</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-light rounded border">
+            <strong class="d-block mb-1 text-dark">Training Dataset</strong>
+            <span class="text-muted fs-7">576 monthly observations across 8 key destinations (2020-2025) with temperature & rainfall features.</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 bg-light rounded border">
+            <strong class="d-block mb-1 text-dark">Automated Retraining</strong>
+            <span class="badge bg-success mb-1">Active (Real-time In-memory)</span>
+            <div class="text-muted fs-7">Recomputes 12-month projections instantly upon parameter changes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="global-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    renderGlobalNav("admin");
+
+    async function loadAdminData() {
+      try {
+        const mRes = await fetch(`${API_BASE}/api/admin/metrics`);
+        const metrics = await mRes.json();
+        document.getElementById("adm-users").textContent = metrics.total_registered_users.toLocaleString();
+        document.getElementById("adm-trips").textContent = metrics.total_trips_planned.toLocaleString();
+
+        const dRes = await fetch(`${API_BASE}/api/destinations`);
+        const dests = await dRes.json();
+        document.getElementById("adm-dest-count").textContent = `${dests.length} Destinations`;
+
+        const tbody = document.getElementById("adm-dest-tbody");
+        tbody.innerHTML = dests.map(d => `
+          <tr>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <img src="${d.image}" style="width: 36px; height: 36px; object-fit: cover; border-radius: 6px;">
+                <strong class="text-dark">${d.name}</strong>
+              </div>
+            </td>
+            <td>${d.state}</td>
+            <td><span class="badge bg-light text-dark border">${d.category}</span></td>
+            <td>⭐ ${d.rating}</td>
+            <td><strong>₹${d.avg_daily_cost.toLocaleString()}</strong></td>
+          </tr>
+        `).join("");
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function handleAddNewDest(e) {
+      e.preventDefault();
+      const name = document.getElementById("new-dest-name").value;
+      const state = document.getElementById("new-dest-state").value;
+      const cat = document.getElementById("new-dest-cat").value;
+      const cost = parseInt(document.getElementById("new-dest-cost").value);
+      const img = document.getElementById("new-dest-img").value;
+
+      const tbody = document.getElementById("adm-dest-tbody");
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>
+          <div class="d-flex align-items-center gap-2">
+            <img src="${img}" style="width: 36px; height: 36px; object-fit: cover; border-radius: 6px;">
+            <strong class="text-dark">${name}</strong>
+          </div>
+        </td>
+        <td>${state}</td>
+        <td><span class="badge bg-primary">${cat}</span></td>
+        <td>⭐ 4.8 (New)</td>
+        <td><strong>₹${cost.toLocaleString()}</strong></td>
+      `;
+      tbody.prepend(tr);
+      showToast(`Destination '${name}' successfully registered into catalog!`, "success");
+      e.target.reset();
+    }
+
+    function exportDemandCSV() {
+      window.open(`${API_BASE}/api/historical_data.csv`, "_blank");
+    }
+
+    loadAdminData();
+  </script>
+</body>
+</html>
